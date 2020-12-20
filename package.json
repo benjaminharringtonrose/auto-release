@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/benjaminharringtonrose/auto-release/issues"
   },
-  "homepage": "https://github.com/benjaminharringtonrose/auto-release#readme"
+  "homepage": "https://github.com/benjaminharringtonrose/auto-release#readme",
+  "dependencies": {
+    "exec-sh": "^0.3.4"
+  }
 }
