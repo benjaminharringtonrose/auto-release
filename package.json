@@ -1,6 +1,6 @@
 {
   "name": "@benjamin_rose/auto-release",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "Create and tag release branch",
   "main": "src/index.js",
   "scripts": {
