@@ -1,4 +1,4 @@
-var execSh = require("./");
+var execSh = require("exec-sh");
 console.log("here");
 // run interactive bash shell
 
