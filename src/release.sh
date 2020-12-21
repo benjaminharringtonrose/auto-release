@@ -23,9 +23,6 @@ NO_COLOR='\033[0m'
 # current Git branch
 branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 
-# check to see if branch already exists
-existed_in_local=$(git branch --list ${branch})
-
 # current project name
 projectName=$(git config --local remote.origin.url|sed -n 's#.*/\([^.]*\)\.git#\1#p')
 
@@ -76,11 +73,8 @@ if [ $branch = "develop" ]; then
 		
 		# create the release branch from the develop branch
 		printf "\n${BLUE_TEXT}git checkout -b $releaseBranch $developBranch ${NO_COLOR}\n\n"
-		if [[ -z ${existed_in_local} ]]; then
-			git checkout $releaseBranch
-		else
-			git checkout -b $releaseBranch $developBranch
-		fi
+
+		git checkout -b $releaseBranch $developBranch
 
 		# merge develop branch
 		printf "\n${BLUE_TEXT}git merge $developBranch ${NO_COLOR}\n\n"		
