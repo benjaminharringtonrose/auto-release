@@ -77,7 +77,6 @@ if [ $branch = "develop" ]; then
 		# create the release branch from the develop branch
 		printf "\n${BLUE_TEXT}git checkout -b $releaseBranch $developBranch ${NO_COLOR}\n\n"
 		if [[ -z ${existed_in_local} ]]; then
-			console.log("here")
 			git checkout $releaseBranch
 		else
 			git checkout -b $releaseBranch $developBranch
