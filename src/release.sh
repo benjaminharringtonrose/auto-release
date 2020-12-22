@@ -19,22 +19,17 @@ blueText='\033[0;34m'
 redText='\033[0;31m'
 purpleText='\033[0;35m'
 
-# current Git branch
-branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
-
 # current project name
 projectName=$(git config --local remote.origin.url|sed -n 's#.*/\([^.]*\)\.git#\1#p')
 
 # establish develop branch name and develop variables
-developBranch=$branch
+developBranch=develop
 
 # checkout to develop branch, this will break if the user has uncommited changes
 git checkout $developBranch
 
 # master branch validation
 if [ $branch = "develop" ]; then
-
-	
 
 	packageVersion=$(cat package.json \
 		| grep version \
