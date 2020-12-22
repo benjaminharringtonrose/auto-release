@@ -19,8 +19,6 @@ blueText='\033[0;34m'
 redText='\033[0;31m'
 purpleText='\033[0;35m'
 
-npm version bump
-
 # current Git branch
 branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 
