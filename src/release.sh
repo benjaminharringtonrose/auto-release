@@ -62,7 +62,7 @@ if [ $branch = "develop" ]; then
 	git tag $tagName && git push
 
 	# push tag to remote origin
-	printf "\ngit push --tags origin\n\n"
+	printf "\n${blue}git push --tags origin${reset}\n\n"
 	git push --tags origin 
 	
 	# create the release branch from the develop branch
@@ -81,6 +81,6 @@ if [ $branch = "develop" ]; then
 
 else 
 
-	printf "${red}Please make sure you are on develop branch!${reset}\n"
+	printf "\n${red}Please make sure you are on develop branch!${reset}\n"
 
 fi
