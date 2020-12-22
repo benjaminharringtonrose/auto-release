@@ -53,7 +53,7 @@ if [ $branch = "develop" ]; then
 	releaseBranch="release/$packageVersion"
 	tagName="open-release-v$packageVersion"
 
-	printf "\n${blueText}Started releasing $packageVersion for $projectName -->\n\n${noColor}"
+	printf "\n${blueText}Started releasing $packageVersion for $projectName -->\n\n"
 
 	# pull the latest version of the code from develop and create empty commit from develop branch
 	printf "\ngit pull && git commit --allow-empty -m\n\n"
@@ -68,7 +68,7 @@ if [ $branch = "develop" ]; then
 	git push --tags origin 
 	
 	# create the release branch from the develop branch
-	printf "\ngit checkout -b $releaseBranch $developBranch\n\n${noColor}"
+	printf "\ngit checkout -b $releaseBranch $developBranch\n\n"
 
 	git checkout -b $releaseBranch $developBranch
 
