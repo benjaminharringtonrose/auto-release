@@ -18,12 +18,16 @@
 blueText='\033[0;34m'
 redText='\033[0;31m'
 purpleText='\033[0;35m'
+noColor='\033[0m'
+
+# current Git branch
+branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
 
 # current project name
 projectName=$(git config --local remote.origin.url|sed -n 's#.*/\([^.]*\)\.git#\1#p')
 
 # establish develop branch name and develop variables
-developBranch=develop
+developBranch=$branch
 
 # checkout to develop branch, this will break if the user has uncommited changes
 git checkout $developBranch
@@ -49,7 +53,7 @@ if [ $branch = "develop" ]; then
 	releaseBranch="release/$packageVersion"
 	tagName="open-release-v$packageVersion"
 
-	printf "\n${blueText}Started releasing $packageVersion for $projectName -->\n\n"
+	printf "\n${blueText}Started releasing $packageVersion for $projectName -->\n\n${noColor}"
 
 	# pull the latest version of the code from develop and create empty commit from develop branch
 	printf "\ngit pull && git commit --allow-empty -m\n\n"
@@ -64,21 +68,21 @@ if [ $branch = "develop" ]; then
 	git push --tags origin 
 	
 	# create the release branch from the develop branch
-	printf "\ngit checkout -b $releaseBranch $developBranch\n\n"
+	printf "\ngit checkout -b $releaseBranch $developBranch\n\n${noColor}"
 
 	git checkout -b $releaseBranch $developBranch
 
 	# merge develop branch
-	printf "\ngit merge $developBranch\n\n"		
+	printf "\ngit merge $developBranch\n\n${noColor}"		
 	git merge $developBranch
 
 	# push local releaseBranch to remote
 	git push -u origin $releaseBranch
 
-	printf "\n${purpleText}$packageVersion is successfully created for $projectName!\n\n"
+	printf "\n${purpleText}$packageVersion is successfully created for $projectName!\n\n${noColor}"
 
 else 
 
-	printf "${redText}Please make sure you are on develop branch!\n"
+	printf "${redText}Please make sure you are on develop branch!\n${noColor}"
 
 fi
