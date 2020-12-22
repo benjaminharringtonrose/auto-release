@@ -42,9 +42,7 @@ if [ $branch = "develop" ]; then
 		| sed 's/[",]//g' \
 		| tr -d '[:space:]')
 
-	
-
-	printf "\n${purple}Release version $packageVersion\n\n${reset}"
+	printf "\n${purple}Release version $packageVersion${reset}\n\n"
 
 	# 1.0.0, 1.0.1, 1.1.0, etc
 	versionLabel=$packageVersion
@@ -73,16 +71,16 @@ if [ $branch = "develop" ]; then
 	git checkout -b $releaseBranch $developBranch
 
 	# merge develop branch
-	printf "\n${blue}git merge $developBranch\n\n${reset}"		
+	printf "\n${blue}git merge $developBranch${reset}\n\n"		
 	git merge $developBranch
 
 	# push local releaseBranch to remote
 	git push -u origin $releaseBranch
 
-	printf "\n${purple}$packageVersion is successfully created for $projectName!\n\n${reset}"
+	printf "\n${purple}$packageVersion is successfully created for $projectName!${reset}\n\n"
 
 else 
 
-	printf "${red}Please make sure you are on develop branch!\n${reset}"
+	printf "${red}Please make sure you are on develop branch!${reset}\n"
 
 fi
