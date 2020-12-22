@@ -15,10 +15,10 @@
 # 12. merge develop branch
 # 13. push commit release branch to remote origin
 
-blueText='\033[0;34m'
-redText='\033[0;31m'
-purpleText='\033[0;35m'
-noColor='\033[0m'
+blue='\033[0;34m'
+red='\033[0;31m'
+purple='\033[0;35m'
+reset='\033[0m'
 
 # current Git branch
 branch=$(git symbolic-ref HEAD | sed -e 's,.*/\(.*\),\1,')
@@ -44,7 +44,7 @@ if [ $branch = "develop" ]; then
 
 	
 
-	printf "\nRelease version $packageVersion\n\n"
+	printf "\n${purple}Release version $packageVersion\n\n${reset}"
 
 	# 1.0.0, 1.0.1, 1.1.0, etc
 	versionLabel=$packageVersion
@@ -53,14 +53,14 @@ if [ $branch = "develop" ]; then
 	releaseBranch="release/$packageVersion"
 	tagName="open-release-v$packageVersion"
 
-	printf "\n${blueText}Started releasing $packageVersion for $projectName -->\n\n"
+	printf "\n${blue}Started releasing $packageVersion for $projectName -->${reset}\n\n"
 
 	# pull the latest version of the code from develop and create empty commit from develop branch
-	printf "\ngit pull && git commit --allow-empty -m\n\n"
+	printf "\n${blue}git pull && git commit --allow-empty -m${reset}\n\n"
 	git pull && git commit --allow-empty -m "Creating branch $releaseBranch"
 
 	# create tag for new version from develop and push commit to remote origin
-	printf "\ngit tag $tagName && git push\n\n"
+	printf "\n${blue}git tag $tagName && git push${reset}\n\n"
 	git tag $tagName && git push
 
 	# push tag to remote origin
@@ -68,21 +68,21 @@ if [ $branch = "develop" ]; then
 	git push --tags origin 
 	
 	# create the release branch from the develop branch
-	printf "\ngit checkout -b $releaseBranch $developBranch\n\n"
+	printf "\n${blue}git checkout -b $releaseBranch $developBranch${reset}\n\n"
 
 	git checkout -b $releaseBranch $developBranch
 
 	# merge develop branch
-	printf "\ngit merge $developBranch\n\n${noColor}"		
+	printf "\n${blue}git merge $developBranch\n\n${reset}"		
 	git merge $developBranch
 
 	# push local releaseBranch to remote
 	git push -u origin $releaseBranch
 
-	printf "\n${purpleText}$packageVersion is successfully created for $projectName!\n\n${noColor}"
+	printf "\n${purple}$packageVersion is successfully created for $projectName!\n\n${reset}"
 
 else 
 
-	printf "${redText}Please make sure you are on develop branch!\n${noColor}"
+	printf "${red}Please make sure you are on develop branch!\n${reset}"
 
 fi
