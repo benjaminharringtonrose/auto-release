@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/benjaminharringtonrose/auto-release#readme",
   "dependencies": {
-    "exec-sh": "^0.3.4"
+    "exec-sh": "^0.3.4",
+    "shelljs": "^0.8.4"
   }
 }
